@@ -1,0 +1,8 @@
+/Lib
+/__pycache__
+/Scripts
+/config.py
+/pyvenv.cfg
+/static/css/Libry/*
+/static/img
+/static/css/css/bootstrap.css
