@@ -1,0 +1,49 @@
+.inputform {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  position: absolute;
+  top: 59%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  overflow: hidden;
+  width: 80%;
+  max-width: 768px;
+  padding: 20px;
+  min-height: 480px;
+}
+.inputform input[type="text"] {
+  width: 100%; /* Full width of the parent */
+  padding: 10px; /* Comfortable padding */
+  margin: 10px 0; /* Margin for separation */
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 5px; /* Slight rounded corners */
+  font-size: 16px; /* Readable font size */
+  box-sizing: border-box; /* To ensure padding and border are included in width */
+}
+.inputform input[type="text"]::placeholder{
+  color: rgb(187, 184, 184);
+}
+.inputform textarea[type="text"]::placeholder{
+  color: rgb(187, 184, 184);
+}
+
+.inputform textarea[type="text"] {
+  width: 100%; /* Full width of the parent */
+  padding: 10px; /* Comfortable padding */
+  margin: 10px 0; /* Margin for separation */
+  border: 1px solid #ccc; /* Light border */
+  border-radius: 5px; /* Slight rounded corners */
+  font-size: 16px; /* Readable font size */
+  box-sizing: border-box; /* To ensure padding and border are included in width */
+}
+.inputform button{
+  background-color: #5f8f25;
+  border-color: #5f8f25;
+  width: 100px;          /* Set the width of the button */
+  height: 40px;
+  transition: background-color 0.3s;
+}
+.inputform button:hover{
+  background-color: #76a938;
+}
