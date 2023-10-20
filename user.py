@@ -160,9 +160,7 @@ def predict():
     travel_partner_descriptions = df['combined_description'].tolist()
     traveler_descriptions = df1['combined_description'].tolist()
 
-    # # Preprocess the travel partner data and extract descriptions
-    # travel_partner_descriptions = df[['aboutme','age']].values.tolist()
-    # traveler_descriptions = df1[['Myself','Age']].values.tolist()
+    
 
     # Create a TF-IDF vectorizer and fit it on the travel partner descriptions
     tfidf_vectorizer = TfidfVectorizer(stop_words='english')
@@ -199,13 +197,6 @@ def predict():
     # Return the recommended profiles as part of the JSON response
     return jsonify({'profiles': recommended_profiles}), 201
 
-    # for index in top_recommendations:
-    #     # print(
-    #     #     f"Travel Partner {index}: {df['name','age','aboutme'][index]}, Similarity Score: {cosine_sim[0][index]}")
-    #     print(
-    #         f"Travel Partner {index}: {df[['name', 'age', 'aboutme']].iloc[index].to_dict()}, Similarity Score: {cosine_sim[index]}")
-
-    # return jsonify({'message': 'predict success'}), 201
 
 
     

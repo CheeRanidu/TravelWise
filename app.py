@@ -24,8 +24,7 @@ def require_token(func):
         except jwt.InvalidTokenError:
             return jsonify({'error': 'Invalid token'}), 401
 
-        # You can also access the payload data, e.g., user_id, email, etc.
-        # user_id = payload.get('user_id')
+        
 
         return func(*args, **kwargs)
 
