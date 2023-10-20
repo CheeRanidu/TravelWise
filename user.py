@@ -63,6 +63,7 @@ def signup():
     lastName = request_data.get('lastName')
     gender = request_data.get('gender')
     number = request_data.get('number')
+    nic = request_data.get('nic')
 
     # Check if the email, name, and password are provided
     if not email or not firstName or not password:
@@ -83,7 +84,8 @@ def signup():
         'firstName':firstName,
         'lastName':lastName,
         'gender':gender,
-        'number':number
+        'number':number,
+        'nic':nic
     }
     collection.insert_one(user_data)
 
@@ -91,7 +93,7 @@ def signup():
     return response
 
 
-@user_blueprint.route('/partner', methods=['POST'])
+@user_blueprint.route('/partners', methods=['POST'])
 def partner():
     # Get the request data
     request_data = request.get_json()
@@ -167,9 +169,9 @@ def predict():
     tfidf_matrix = tfidf_vectorizer.fit_transform(travel_partner_descriptions)
     tfidf_vector = tfidf_vectorizer.transform(traveler_descriptions)
 
-    print(tfidf_matrix)
-    print("asdad")
-    print(tfidf_vector)
+    print('matrix',tfidf_matrix)
+    print("##############################")
+    print('vector',tfidf_vector)
 
     # Compute cosine similarity between the user and travel partners
     cosine_sim = cosine_similarity(tfidf_vector, tfidf_matrix)
@@ -177,10 +179,8 @@ def predict():
     # Get the indices of top recommendations based on similarity scores
     top_recommendations = cosine_sim[0].argsort()[::-1][:5]
 
-    # top_recommendations = cosine_sim.argsort()[0][::-1]
-
-    print(cosine_sim)
-    print(top_recommendations)
+    print('similariy score',cosine_sim)
+    print('top profiles',top_recommendations)
 
     recommended_profiles = []
 

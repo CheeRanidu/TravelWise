@@ -3,7 +3,7 @@ from user import user_blueprint
 import jwt
 from functools import wraps
 from config import secret_key
-
+import json
 app = Flask(__name__)
 
 
@@ -15,7 +15,7 @@ def require_token(func):
         token = request.cookies.get('jwtToken')
 
         if not token:
-            return jsonify({'error': 'Token is missing'}), 401
+            return jsonify({'error': 'Token is missing unuathorized user'}), 401
 
         try:
             payload = jwt.decode(token, secret_key, algorithms=['HS256'])
@@ -53,11 +53,20 @@ def profile():
 
 
 @app.route('/logout')
+@require_token
 def logout():
-    response = make_response(redirect(url_for('user.login')))
+    response = make_response(redirect(url_for('home2')))
     response.set_cookie('jwtToken', '', expires=0, httponly=True, secure=True)
     
     return response
+
+@app.route('/partner',methods=['POST', 'GET'])
+@require_token
+def partner():
+     profile_json = request.args.get('profile',)
+     profile = json.loads(profile_json)
+     
+     return render_template('partnerprofile.html', profile=profile)
 
 
 app.register_blueprint(user_blueprint, url_prefix="/")

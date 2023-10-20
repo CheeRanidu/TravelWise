@@ -73,7 +73,7 @@
               <div class="form-group">
                 <label for="email">Email</label>
                 <input
-                  type="text"
+                  type="email"
                   class="form-control"
                   id="email"
                   name="email"
@@ -87,6 +87,16 @@
                   class="form-control"
                   id="password"
                   name="password"
+                  required="required"
+                />
+              </div>
+              <div class="form-group">
+                <label for="nic">NIC</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  id="nic"
+                  name="nic"
                   required="required"
                 />
               </div>
@@ -123,6 +133,7 @@
           const email = document.getElementById("email").value;
           const password = document.getElementById("password").value;
           const number = document.getElementById("number").value;
+          const nic = document.getElementById("nic").value;
   
           const data = {
             email: email,
@@ -131,6 +142,7 @@
             lastName:lastName,
             gender:gender,
             number:number,
+            nic:nic,
           };
   
           fetch("/signup", {

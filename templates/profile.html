@@ -46,6 +46,17 @@
         margin-left: 11.5%;
         padding-top: 50px;
       }
+      button{
+  background-color: #5f8f25;
+  border-color: #5f8f25;
+  width: 100px;          
+  height: 40px;
+  transition: background-color 0.3s;
+  font-size: 14px;
+}
+ button:hover{
+  background-color: #76a938;
+}
     </style>
   </head>
 
@@ -117,8 +128,7 @@
             <div class="navbar-nav ml-auto py-0">
               <a href="index.html" class="nav-item nav-link active">Home</a>
               <a href="about.html" class="nav-item nav-link">About</a>
-              <!-- <a href="service.html" class="nav-item nav-link">Services</a>
-                    <a href="package.html" class="nav-item nav-link">Tour Packages</a> -->
+              
               <div class="nav-item dropdown">
                 <a
                   href="#"
@@ -233,7 +243,7 @@
             .then((response) => response.json())
             .then((data) => {
               const profilesList = document.getElementById("profiles-list");
-              profilesList.innerHTML = ""; // Clearing any previous profiles
+              profilesList.innerHTML = ""; 
               
               // Ensure that data.profiles exists and is an array before proceeding
               if (data.profiles && Array.isArray(data.profiles)) {
@@ -254,17 +264,34 @@
                             <p class="text-gray-500">Age: ${profile.age}</p>
                             <p>About: ${profile.aboutme}</p>
                             <p>Email: ${profile.email}</p>
-                            <button>view profile</button>
+                            <button class="view-profile-btn">view profile</button>
                         </div>
                     </div>
                               `;
                   profilesList.appendChild(profileDiv);
+                  profileDiv.querySelector(".view-profile-btn").addEventListener("click", function() {
+                  goToProfile(profile);
+                   });
                 });alert('Done!')
               } else {
                 console.error("Unexpected data format received:", data);
+                
               }
             });
         });
+    </script>
+
+    <script>
+      function goToProfile(profile) {
+        // Convert profile to JSON string
+        var jsonString = JSON.stringify(profile);
+    
+        // URL-encode the JSON string
+        var encodedProfile = encodeURIComponent(jsonString);
+    
+        // Redirect to the partner route with the encoded profile as a parameter
+        location.href = '/partner?profile=' + encodedProfile;
+      }
     </script>
   </body>
 </html>
